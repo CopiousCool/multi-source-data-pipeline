@@ -17,4 +17,18 @@ Expose the data: Finally, you can expose the data to users via a BI tool such as
 
 # Code Analysis / Documentation
 
-This code defines three functions to read data from Looker and Lucidchart, and to merge the data from both sources. The read_looker_data() function takes a Looker API query as input, runs the query using the Looker API, and returns the results as a pandas dataframe. The read_lucidchart_data() function takes a file path as input, reads data from a CSV file using pandas.read_csv(), and returns the data as a pandas dataframe. The merge_data() function reads data from Looker and Lucidchart using the previously defined functions, merges the data using pandas.merge(), and returns the merged data as a pandas dataframe. Finally, the merge_data() function is called and the resulting merged data is printed to the console.
+This code is a Python script that does the following:
+
+It imports several Python packages that provide functionality for working with data, including pandas, the Salesforce API, and Lucidchart.
+It defines three functions that are used to read data from different sources: Looker, Lucidchart, and Salesforce. The Looker and Lucidchart functions read data from CSV files, while the Salesforce function uses the Salesforce API to query data from Salesforce.
+It defines a fourth function that uses the previously defined functions to merge data from all three sources into a single pandas dataframe.
+Finally, the script calls the merge_data function and outputs the resulting merged data to the console.
+Overall, this script provides a way to easily access and combine data from multiple sources, including Salesforce, Looker, and Lucidchart, using Python.
+
+The Python program is designed to read data from multiple sources, including Salesforce, Looker, and Lucidchart, and merge the data into a single dataframe. The program achieves this by defining several functions that use different methods to read data from each source.
+
+For example, the read_salesforce_data() function uses the Salesforce API to query data from Salesforce, while the read_looker_data() and read_lucidchart_data() functions read data from CSV files. The program then uses the merge_data() function to combine the data from all three sources into a single dataframe using the pandas merge() function.
+
+The program is flexible and can be customized to read data from different sources and combine them in different ways. For example, if you wanted to add a new data source, such as Google Sheets, you could create a new function to read data from Google Sheets and modify the merge_data() function to include the new data source.
+
+Overall, this program provides a powerful tool for combining data from multiple sources and performing data analysis using Python and pandas.
