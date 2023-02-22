@@ -31,3 +31,18 @@ For example, the read_salesforce_data() function uses the Salesforce API to quer
 The program is flexible and can be customized to read data from different sources and combine them in different ways. For example, if you wanted to add a new data source, such as Google Sheets, you could create a new function to read data from Google Sheets and modify the merge_data() function to include the new data source.
 
 Overall, this program provides a way to easily access and combine data from multiple sources, including Salesforce, Looker & Lucidchart, and performing data analysis using Python and pandas in one complete tool.
+
+# Note
+
+Note that you will need to replace the placeholder values 
+'your_salesforce_username', 
+'your_salesforce_password', 
+'your_salesforce_security_token', 
+'your_look_id', 
+'your_look_view', 
+'your_look_query', '
+your_lucid_file_path', 
+and 
+'your_salesforce_query' 
+
+with the appropriate values for your specific data sources and queries.
