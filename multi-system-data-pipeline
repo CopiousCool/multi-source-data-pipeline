@@ -1,54 +1,58 @@
-import requests
-import json
-import psycopg2
+import pandas as pd
+from lookerapi import LookerApi
+import os
+from simple_salesforce import Salesforce
 
-# Set up connection to Redshift
-conn = psycopg2.connect(database="my_database",
-                        user="my_user",
-                        password="my_password",
-                        host="my_redshift_cluster",
-                        port="my_port")
+def read_look_data(query):
+    # Authenticate with Looker API
+    api_client = LookerApi(
+        # Set API credentials
+        api_endpoint=os.environ['LOOKERSDK_BASE_URL'],
+        client_id=os.environ['LOOKERSDK_CLIENT_ID'],
+        client_secret=os.environ['LOOKERSDK_CLIENT_SECRET'],
+        access_token=os.environ['LOOKERSDK_ACCESS_TOKEN']
+    )
 
-# Extract data from Looker
-looker_api_key = "my_looker_api_key"
-looker_base_url = "https://my_looker_instance/api/3.1/"
-looker_query_id = "my_looker_query_id"
+    # Run query and store results in pandas dataframe
+    look_data = api_client.run_inline_query('your_look_id', 'your_look_view', query).get('data', {}).get('rows', {})
+    df = pd.DataFrame(look_data)
 
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": f"Bearer {looker_api_key}"
-}
+    return df
 
-data = {
-    "model": "my_looker_model",
-    "view": "my_looker_view",
-    "fields": ["field_1", "field_2", "field_3"],
-    "filters": {"field_4": "value"},
-    "limit": 1000,
-    "sorts": ["field_5"]
-}
+def read_lucid_data(file_path):
+    # Read data from CSV file using pandas
+    df = pd.read_csv(file_path)
 
-response = requests.post(looker_base_url + f"queries/{looker_query_id}/run/json", headers=headers, data=json.dumps(data))
+    return df
 
-looker_data = response.json()
+def read_salesforce_data(query):
+    # Authenticate with Salesforce API
+    username = 'your_salesforce_username'
+    password = 'your_salesforce_password'
+    security_token = 'your_salesforce_security_token'
+    sf = Salesforce(username=username, password=password, security_token=security_token)
 
-# Extract data from Lucidchart
-lucidchart_api_key = "my_lucidchart_api_key"
-lucidchart_base_url = "https://api.lucidchart.com/v1/"
-lucidchart_diagram_id = "my_lucidchart_diagram_id"
+    # Run query and store results in pandas dataframe
+    sf_data = sf.query(query)['records']
+    df = pd.DataFrame(sf_data)
 
-headers = {
-    "Authorization": f"Bearer {lucidchart_api_key}"
-}
+    return df
 
-response = requests.get(lucidchart_base_url + f"diagrams/{lucidchart_diagram_id}/data", headers=headers)
+def merge_data(looker_query, lucid_file_path, salesforce_query):
+    # Read data from Looker, Lucidchart, and Salesforce
+    look_data = read_look_data(looker_query)
+    lucid_data = read_lucid_data(lucid_file_path)
+    salesforce_data = read_salesforce_data(salesforce_query)
 
-lucidchart_data = response.json()
+    # Merge data using pandas
+    merged_data = pd.merge(look_data, lucid_data, on='common_column')
+    merged_data = pd.merge(merged_data, salesforce_data, on='common_column')
 
-# Transform the data (if necessary)
-# For example, you could clean and join the data here
+    return merged_data
 
-# Load the data into Redshift
-with conn.cursor() as cur:
-    for row in looker_data:
-        cur.execute("INSERT INTO my_table
+# Call merge_data() function and print resulting data to console
+looker_query = 'your_look_query'
+lucid_file_path = 'your_lucid_file_path'
+salesforce_query = 'your_salesforce_query'
+merged_data = merge_data(looker_query, lucid_file_path, salesforce_query)
+print(merged_data)
