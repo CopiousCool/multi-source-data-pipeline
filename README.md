@@ -23,7 +23,6 @@ It imports several Python packages that provide functionality for working with d
 It defines three functions that are used to read data from different sources: Looker, Lucidchart, and Salesforce. The Looker and Lucidchart functions read data from CSV files, while the Salesforce function uses the Salesforce API to query data from Salesforce.
 It defines a fourth function that uses the previously defined functions to merge data from all three sources into a single pandas dataframe.
 Finally, the script calls the merge_data function and outputs the resulting merged data to the console.
-Overall, this script provides a way to easily access and combine data from multiple sources, including Salesforce, Looker, and Lucidchart, using Python.
 
 The Python program is designed to read data from multiple sources, including Salesforce, Looker, and Lucidchart, and merge the data into a single dataframe. The program achieves this by defining several functions that use different methods to read data from each source.
 
@@ -31,4 +30,4 @@ For example, the read_salesforce_data() function uses the Salesforce API to quer
 
 The program is flexible and can be customized to read data from different sources and combine them in different ways. For example, if you wanted to add a new data source, such as Google Sheets, you could create a new function to read data from Google Sheets and modify the merge_data() function to include the new data source.
 
-Overall, this program provides a powerful tool for combining data from multiple sources and performing data analysis using Python and pandas.
+Overall, this program provides a way to easily access and combine data from multiple sources, including Salesforce, Looker & Lucidchart, and performing data analysis using Python and pandas in one complete tool.
