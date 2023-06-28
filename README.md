@@ -3,7 +3,7 @@ A data pipeline that exposes and links data from multiple systems such as Looker
 
  Objective
  
-Identify the data sources: The first step is to identify the different data sources that you want to pull data from. In this case, the sources are Looker and Lucidchart.
+Identify the data sources: The first step is to identify the different data sources that you want to pull data from. In this case, the sources are SalesForce, Looker and Lucidchart.
 
 Extract the data: Once you have identified the data sources, the next step is to extract the data from each source. This can be done using APIs provided by the respective systems. For example, Looker provides a RESTful API that can be used to extract data from the Looker system.
 
