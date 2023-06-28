@@ -9,7 +9,7 @@ Extract the data: Once you have identified the data sources, the next step is to
 
 Transform the data: After extracting the data, you may need to perform some transformations on it to ensure that it is in a format that can be used by your data pipeline. This might involve cleaning the data, reformatting it, or joining it with other data sources.
 
-Load the data: Once the data has been extracted and transformed, the next step is to load it into a central repository or data warehouse. This could be a cloud-based solution such as Amazon Redshift, Google BigQuery, or Microsoft Azure SQL Data Warehouse.
+Load the data: Once the data has been extracted and transformed, the next step is to load it into a central repository or data warehouse. This could be a cloud-based solution such as Amazon Redshift, Google BigQuery, or Microsoft Azure SQL Data Warehouse or even a more modern Graph or Vector DB.
 
 Link the data: With the data now stored in a central repository, you can link it together using a data modeling tool. Looker provides a data modeling layer that allows you to build relationships between different tables of data.
 
